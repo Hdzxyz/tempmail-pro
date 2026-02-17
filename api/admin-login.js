@@ -1,14 +1,13 @@
-import axios from "axios"
+export default function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" })
+  }
 
-export default async function handler(req, res) {
-  const { login, domain, id } = req.query
+  const { password } = req.body
 
-  try {
-    const response = await axios.get(
-      `https://www.1secmail.com/api/v1/?action=readMessage&login=${login}&domain=${domain}&id=${id}`
-    )
-    res.status(200).json(response.data)
-  } catch {
-    res.status(500).json({ error: "Failed to read message" })
+  if (password === "123") {
+    return res.status(200).json({ success: true })
+  } else {
+    return res.status(401).json({ success: false })
   }
 }
