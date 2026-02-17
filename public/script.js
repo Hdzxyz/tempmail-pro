@@ -14,10 +14,29 @@ async function generateEmail() {
   }, 200)
 }
 
-function copyEmail() {
-  if (!currentEmail) return
-  navigator.clipboard.writeText(currentEmail)
-  alert("Email copied!")
+async function copyEmail() {
+  const email = document.getElementById("emailDisplay").innerText;
+
+  if (!email || email === "-") {
+    alert("Tidak ada email untuk di-copy!");
+    return;
+  }
+
+  try {
+    await navigator.clipboard.writeText(email);
+
+    const btn = document.getElementById("copyBtn");
+    btn.innerText = "Copied ✓";
+    btn.classList.add("copied");
+
+    setTimeout(() => {
+      btn.innerText = "Copy";
+      btn.classList.remove("copied");
+    }, 2000);
+
+  } catch (err) {
+    alert("Gagal menyalin email!");
+  }
 }
 
 async function loadInbox() {
