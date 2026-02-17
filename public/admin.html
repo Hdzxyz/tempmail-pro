@@ -82,23 +82,34 @@ setInterval(function() {
 
 <body>
 
-<div class="container">
-  <h1>👑 Admin Panel</h1>
+<div class="admin-layout">
 
-  <div id="loginBox" class="card">
-    <input type="password" id="password" placeholder="Enter Admin Password">
-    <button onclick="login()">Login</button>
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <button onclick="loadStats()">Refresh Stats</button>
+    <button onclick="logout()">Logout</button>
+    <button onclick="goBack()">Back to Website</button>
   </div>
 
-  <div id="dashboard" style="display:none;">
-    <div class="card">
-      <h3>Statistics</h3>
-      <p>Total Emails: <span id="emails">0</span></p>
-      <p>Total Messages: <span id="messages">0</span></p>
-      <p>Active Domains: <span id="domains">0</span></p>
-      <button onclick="loadStats()">Refresh</button>
+  <div class="dashboard">
+
+    <div id="loginBox" class="card">
+      <h3>Admin Login</h3>
+      <input type="password" id="password" placeholder="Enter Password">
+      <button onclick="login()">Login</button>
     </div>
+
+    <div id="dashboardContent" style="display:none;">
+      <div class="card">
+        <h3>Statistics</h3>
+        <p>Total Emails: <span id="emails">0</span></p>
+        <p>Total Messages: <span id="messages">0</span></p>
+        <p>Active Domains: <span id="domains">0</span></p>
+      </div>
+    </div>
+
   </div>
+
 </div>
 
 <script>
@@ -113,7 +124,7 @@ async function login() {
 
   if (res.ok) {
     document.getElementById("loginBox").style.display = "none"
-    document.getElementById("dashboard").style.display = "block"
+    document.getElementById("dashboardContent").style.display = "block"
     loadStats()
   } else {
     window.location.href = "/login-failed.html"
@@ -129,16 +140,15 @@ async function loadStats() {
   document.getElementById("domains").innerText = data.activeDomains
 }
 
-/* Disable Zoom */
-document.addEventListener('wheel', function(e){
-  if(e.ctrlKey){ e.preventDefault(); }
-}, { passive:false });
+function logout() {
+  document.getElementById("dashboardContent").style.display = "none"
+  document.getElementById("loginBox").style.display = "block"
+}
 
-document.addEventListener('keydown', function(e){
-  if(e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '0')){
-    e.preventDefault();
-  }
-});
+function goBack() {
+  window.location.href = "/"
+}
 </script>
+
 </body>
   </html>
