@@ -80,10 +80,17 @@ setInterval(function() {
 </script>
 <body>
 
+<div class="navbar">
+  <div class="logo">TempMail Pro</div>
+  <div class="nav-links">
+    <a href="/admin.html">Admin</a>
+  </div>
+</div>
+
 <div class="container">
-  <h1>📩 TempMail Premium</h1>
 
   <div class="card">
+    <h2>Generate Temporary Email</h2>
     <button onclick="generateEmail()">Generate Email</button>
     <button onclick="copyEmail()">Copy</button>
     <p class="email-text" id="email">No email generated</p>
@@ -94,9 +101,9 @@ setInterval(function() {
     <div id="inbox">Waiting...</div>
   </div>
 
-  <a href="/admin.html">Go to Admin Panel</a>
 </div>
 
 <script src="script.js"></script>
+<!-- hardcore script tetap di bawah sini -->
 </body>
   </html>
