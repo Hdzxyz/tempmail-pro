@@ -88,19 +88,23 @@ setInterval(function() {
 </div>
 
 <div class="container">
-
   <div class="card">
     <h2>Generate Temporary Email</h2>
-    <button onclick="generateEmail()">Generate Email</button>
-    <button onclick="copyEmail()">Copy</button>
-    <p class="email-text" id="email">No email generated</p>
+<button onclick="generateEmail()">Generate Email</button>
+
+<div class="email-wrapper">
+  <div class="email-box-pro">
+    <span class="email-status">ACTIVE</span>
+    <span class="email-text-pro" id="email">No email generated</span>
+    <button class="copy-btn-pro" onclick="copyEmail()">Copy</button>
+  </div>
+</div>
   </div>
 
   <div class="card">
     <h3>Inbox (Auto Refresh 5s)</h3>
     <div id="inbox">Waiting...</div>
   </div>
-
 </div>
 
 <script src="script.js"></script>
