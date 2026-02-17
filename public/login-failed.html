@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Login Failed</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.error-box {
+  background: rgba(255,0,0,0.1);
+  padding: 40px;
+  border-radius: 15px;
+}
+h1 {
+  color: red;
+}
+a {
+  color: #00ffcc;
+  text-decoration: none;
+}
+</style>
+</head>
+<body>
+
+<div class="error-box">
+  <h1>❌ Login Failed</h1>
+  <p>Password salah.</p>
+  <a href="/admin.html">Kembali ke Login</a>
+</div>
+
+<script>
+document.addEventListener('wheel', function(e){
+  if(e.ctrlKey){ e.preventDefault(); }
+}, { passive:false });
+
+document.addEventListener('keydown', function(e){
+  if(e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '0')){
+    e.preventDefault();
+  }
+});
+</script>
+
+</body>
+  </html>
+  
