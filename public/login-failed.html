@@ -6,6 +6,80 @@
 <title>Login Failed</title>
 <link rel="stylesheet" href="style.css">
 <style>
+  <script>
+// ===============================
+// HARDCORE FRONTEND PROTECTION
+// ===============================
+
+// Disable Right Click
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// Disable Text Selection
+document.addEventListener('selectstart', e => e.preventDefault());
+
+// Disable Drag
+document.addEventListener('dragstart', e => e.preventDefault());
+
+// Disable Zoom (Ctrl + Scroll)
+document.addEventListener('wheel', function(e){
+  if(e.ctrlKey){ e.preventDefault(); }
+}, { passive:false });
+
+// Disable Shortcut Keys
+document.addEventListener('keydown', function(e) {
+
+  // F12
+  if (e.key === "F12") {
+    e.preventDefault();
+  }
+
+  // Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C
+  if (e.ctrlKey && e.shiftKey && 
+     (e.key === "I" || e.key === "J" || e.key === "C")) {
+    e.preventDefault();
+  }
+
+  // Ctrl+U (View Source)
+  if (e.ctrlKey && e.key === "u") {
+    e.preventDefault();
+  }
+
+  // Ctrl+S
+  if (e.ctrlKey && e.key === "s") {
+    e.preventDefault();
+  }
+
+  // Ctrl + + / - / 0
+  if (e.ctrlKey && (e.key === "+" || e.key === "-" || e.key === "0")) {
+    e.preventDefault();
+  }
+
+});
+
+// DevTools Detection (Simple)
+setInterval(function() {
+  const widthThreshold = window.outerWidth - window.innerWidth > 160;
+  const heightThreshold = window.outerHeight - window.innerHeight > 160;
+
+  if (widthThreshold || heightThreshold) {
+    document.body.innerHTML = `
+      <div style="
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        background:black;
+        color:red;
+        font-size:24px;
+      ">
+        ⚠️ Developer Tools Detected
+      </div>
+    `;
+  }
+}, 1000);
+
+</script>
+
 body {
   display: flex;
   justify-content: center;
