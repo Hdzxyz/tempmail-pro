@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TempMail Premium</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>📩 TempMail Premium</h1>
+
+  <div class="card">
+    <button onclick="generateEmail()">Generate Email</button>
+    <button onclick="copyEmail()">Copy</button>
+    <p class="email-text" id="email">No email generated</p>
+  </div>
+
+  <div class="card">
+    <h3>Inbox (Auto Refresh 5s)</h3>
+    <div id="inbox">Waiting...</div>
+  </div>
+
+  <a href="/admin.html">Go to Admin Panel</a>
+</div>
+
+<script src="script.js"></script>
+</body>
+  </html>
