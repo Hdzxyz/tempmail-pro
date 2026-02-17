@@ -4,7 +4,14 @@ async function generateEmail() {
   const res = await fetch("/api/generate")
   const data = await res.json()
   currentEmail = data.email
-  document.getElementById("email").innerText = currentEmail
+
+  const emailElement = document.getElementById("email")
+  emailElement.style.opacity = "0"
+  
+  setTimeout(() => {
+    emailElement.innerText = currentEmail
+    emailElement.style.opacity = "1"
+  }, 200)
 }
 
 function copyEmail() {
