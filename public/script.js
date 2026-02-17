@@ -1,6 +1,14 @@
 let currentEmail = ""
 
-async function generateEmail() {
+function generateEmail() {
+  const random = Math.random().toString(36).substring(2, 10);
+  const email = random + "@hadzzmail.com";
+
+  document.getElementById("emailDisplay").innerText = email;
+
+  // Simpan ke localStorage
+  localStorage.setItem("generatedEmail", email);
+
   const res = await fetch("/api/generate")
   const data = await res.json()
   currentEmail = data.email
