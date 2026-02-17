@@ -1,33 +1,113 @@
-body {
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
+
+body {
+  background: linear-gradient(135deg, #0f0f0f, #1c1c1c, #121212);
   color: white;
-  text-align: center;
+  min-height: 100vh;
 }
 
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  background: linear-gradient(90deg,#00f5ff,#00ff88);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #00ffcc;
+}
+
+/* Main Container */
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 60px auto;
-}
-
-.card {
-  background: rgba(255,255,255,0.1);
   padding: 20px;
-  border-radius: 15px;
-  margin: 20px;
 }
 
+/* Card */
+.card {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(15px);
+  padding: 30px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 40px rgba(0,255,200,0.1);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Buttons */
 button {
-  padding: 10px 20px;
-  border-radius: 30px;
+  padding: 12px 25px;
+  border-radius: 50px;
   border: none;
   cursor: pointer;
   font-weight: bold;
   background: linear-gradient(90deg,#00f5ff,#00ff88);
+  color: black;
+  transition: 0.3s;
 }
 
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Email Text */
 .email-text {
-  font-size: 18px;
+  font-size: 20px;
+  margin-top: 15px;
   word-break: break-all;
+}
+
+/* Admin Dashboard */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(15px);
+  padding: 30px 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 30px;
+}
+
+.sidebar button {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.dashboard {
+  flex: 1;
+  padding: 40px;
 }
