@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Panel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>👑 Admin Panel</h1>
+
+  <div id="loginBox" class="card">
+    <input type="password" id="password" placeholder="Enter Admin Password">
+    <button onclick="login()">Login</button>
+  </div>
+
+  <div id="dashboard" style="display:none;">
+    <div class="card">
+      <h3>Statistics</h3>
+      <p>Total Emails: <span id="emails">0</span></p>
+      <p>Total Messages: <span id="messages">0</span></p>
+      <p>Active Domains: <span id="domains">0</span></p>
+      <button onclick="loadStats()">Refresh</button>
+    </div>
+  </div>
+</div>
+
+<script>
+async function login() {
+  const password = document.getElementById("password").value
+
+  const res = await fetch("/api/admin-login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ password })
+  })
+
+  if (res.ok) {
+    document.getElementById("loginBox").style.display = "none"
+    document.getElementById("dashboard").style.display = "block"
+    loadStats()
+  } else {
+    alert("Wrong password!")
+  }
+}
+
+async function loadStats() {
+  const res = await fetch("/api/admin-stats")
+  const data = await res.json()
+
+  document.getElementById("emails").innerText = data.totalEmails
+  document.getElementById("messages").innerText = data.totalMessages
+  document.getElementById("domains").innerText = data.activeDomains
+}
+</script>
+
+</body>
+  </html>
