@@ -1,27 +1,24 @@
-let currentEmail = ""
+// ===============================
+// TEMP MAIL PREMIUM SCRIPT
+// ===============================
 
+// Generate Random Email
 function generateEmail() {
   const random = Math.random().toString(36).substring(2, 10);
-  const email = random + "@hadzzmail.com";
+  const domain = "hadzzmail.com";
+  const email = `${random}@${domain}`;
 
-  // Simpan ke localStorage
+  // Tampilkan ke UI
+  document.getElementById("emailDisplay").innerText = email;
+
+  // Simpan ke localStorage agar tidak hilang saat refresh
   localStorage.setItem("generatedEmail", email);
-
-  const res = await fetch("/api/generate")
-  const data = await res.json()
-  currentEmail = data.email
-
-  const emailElement = document.getElementById("email")
-  emailElement.style.opacity = "0"
-  
-  setTimeout(() => {
-    emailElement.innerText = currentEmail
-    emailElement.style.opacity = "1"
-  }, 200)
 }
 
+// Copy Email Modern
 async function copyEmail() {
   const email = document.getElementById("emailDisplay").innerText;
+  const btn = document.getElementById("copyBtn");
 
   if (!email || email === "-") {
     alert("Tidak ada email untuk di-copy!");
@@ -31,7 +28,6 @@ async function copyEmail() {
   try {
     await navigator.clipboard.writeText(email);
 
-    const btn = document.getElementById("copyBtn");
     btn.innerText = "Copied ✓";
     btn.classList.add("copied");
 
@@ -40,31 +36,33 @@ async function copyEmail() {
       btn.classList.remove("copied");
     }, 2000);
 
-  } catch (err) {
+  } catch (error) {
     alert("Gagal menyalin email!");
   }
 }
 
-async function loadInbox() {
-  if (!currentEmail) return
-
-  const [login, domain] = currentEmail.split("@")
-  const res = await fetch(`/api/inbox?login=${login}&domain=${domain}`)
-  const data = await res.json()
-
-  let html = ""
-  if (data.length === 0) {
-    html = "No messages"
-  } else {
-    data.forEach(msg => {
-      html += `<div>
-        <b>${msg.from}</b><br>
-        ${msg.subject}
-      </div><hr>`
-    })
-  }
-
-  document.getElementById("inbox").innerHTML = html
+// Reset Email
+function resetEmail() {
+  localStorage.removeItem("generatedEmail");
+  document.getElementById("emailDisplay").innerText = "-";
 }
 
-setInterval(loadInbox, 5000)
+// Auto Load Saat Website Dibuka
+window.onload = function () {
+  const savedEmail = localStorage.getItem("generatedEmail");
+
+  if (savedEmail) {
+    document.getElementById("emailDisplay").innerText = savedEmail;
+  }
+};
+
+// Optional: Anti Zoom Hardcore
+document.addEventListener('wheel', function(e){
+  if(e.ctrlKey){ e.preventDefault(); }
+}, { passive:false });
+
+document.addEventListener('keydown', function(e){
+  if(e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '0')){
+    e.preventDefault();
+  }
+});
